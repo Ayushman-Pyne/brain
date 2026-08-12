@@ -35,11 +35,9 @@ jobs:
         run: cp "content/00 - Maps Of Contents/0 - Home.md" content/index.md
       - name: Integrate Obsidian CSS snippets
         run: |
-          echo "Integrating CSS files from content root..."
-          find content/ -maxdepth 1 -name "*.css" -exec cat {} + >> quartz/styles/custom.scss 2>/dev/null || true
           if [ -d "content/.obsidian/snippets" ]; then
             echo "Integrating Obsidian CSS snippets..."
-            find content/.obsidian/snippets/ -name "*.css" -exec cat {} + >> quartz/styles/custom.scss 2>/dev/null || true
+            cat content/.obsidian/snippets/*.css >> quartz/styles/custom.scss 2>/dev/null || true
           fi
       - uses: actions/setup-node@v6
         with:
