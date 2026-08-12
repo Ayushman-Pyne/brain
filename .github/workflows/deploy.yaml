@@ -22,6 +22,15 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0 # Fetch all history for git info
+      - name: Clean content folder
+        run: rm -rf content
+      - uses: actions/checkout@v6
+        with:
+          repository: Ayushman-Pyne/Obsidian-Brain
+          path: content
+          fetch-depth: 0
+      - name: Setup homepage
+        run: cp "content/00 - Maps Of Contents/0 - Home.md" content/index.md
       - uses: actions/setup-node@v6
         with:
           node-version: 24
