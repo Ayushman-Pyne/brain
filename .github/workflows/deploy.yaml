@@ -31,6 +31,12 @@ jobs:
           fetch-depth: 0
       - name: Setup homepage
         run: cp "content/00 - Maps Of Contents/0 - Home.md" content/index.md
+      - name: Integrate Obsidian CSS snippets
+        run: |
+          if [ -d "content/.obsidian/snippets" ]; then
+            echo "Integrating Obsidian CSS snippets..."
+            cat content/.obsidian/snippets/*.css >> quartz/styles/custom.scss 2>/dev/null || true
+          fi
       - uses: actions/setup-node@v6
         with:
           node-version: 24
